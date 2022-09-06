@@ -55,6 +55,7 @@ h1 {
  font-size: 30px;
  display: flex;
  align-items: center;
+ transition: all 0.01s;
 }
 
 #equal {
@@ -70,7 +71,7 @@ h1 {
  background-color: #b0423b;
 }
 
-.btn.active {
+.active {
  opacity: 0.5;
 }
 
