@@ -54,6 +54,7 @@ function removeActiveClass(e) {
 }
 
 function displayNumbers() {
+	if (!this.classList.contains('active')) return;
 	if (isNewNum) displayValue = '';
 	if (isError || typeof displayValue != 'string') reset();
 	if (displayValue.length < 8) {
@@ -66,6 +67,7 @@ function displayNumbers() {
 }
 
 function storeNumAndOp() {
+	if (!this.classList.contains('active')) return;
 	if (isError) reset();
 	if (num1 && displayValue) showResult();
 	num1 = displayValue;
@@ -92,6 +94,7 @@ function showResult() {
 }
 
 function reset() {
+	if (!this.classList.contains('active')) return;
 	display.textContent = '';
 	num1 = null;
 	operator = null;
@@ -101,6 +104,7 @@ function reset() {
 }
 
 function clearLastDigit() {
+	if (!this.classList.contains('active')) return;
 	if (isError) reset();
 	if (typeof displayValue != 'string') return;
 	displayValue = displayValue.slice(0, -1);
@@ -108,6 +112,7 @@ function clearLastDigit() {
 }
 
 function multiplyMinusOne() {
+	if (!this.classList.contains('active')) return;
 	if (typeof displayValue != 'string') return;
 	displayValue = displayValue ? String(displayValue * -1) : '-';
 	display.textContent = displayValue;
@@ -123,16 +128,16 @@ btns.forEach(btn => btn.addEventListener('click', addActiveClass));
 
 btns.forEach(btn => btn.addEventListener('transitionend', removeActiveClass));
 
-numbers.forEach(number => number.addEventListener('click', displayNumbers));
+numbers.forEach(number => number.addEventListener('transitionstart', displayNumbers));
 
-operators.forEach(operator => operator.addEventListener('click', storeNumAndOp));
+operators.forEach(operator => operator.addEventListener('transitionstart', storeNumAndOp));
 
-equal.addEventListener('click', showResult);
+equal.addEventListener('transitionstart', showResult);
 
-clear.addEventListener('click', reset);
+clear.addEventListener('transitionstart', reset);
 
-backspace.addEventListener('click', clearLastDigit);
+backspace.addEventListener('transitionstart', clearLastDigit);
 
-negative.addEventListener('click', multiplyMinusOne);
+negative.addEventListener('transitionstart', multiplyMinusOne);
 
 window.addEventListener('keydown', addActiveClassKey)

@@ -11,3 +11,5 @@ All decimal values are rounded to 2 digits.
 The +/- key, can't be applied to results, just inputted values.
 
 For Keyboard support, use Num-pad.
+
+C = Esc, +/- = Shift.
